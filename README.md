@@ -9,10 +9,18 @@ Der Nutzer kann auf vesschieden Linien der LVB Haltestellen auswählen, bekommt 
 
 ## Kompilieren und Ausführen
 
-Kompilieren per Makefile
-
-Ausführen per: ./Ticketautomat
-
+Kompilieren per Makefile: 
+```zsh
+make
+```
+Ausführen per: 
+```zsh
+make run 
+```
+oder 
+```zsh
+./Ticketautomat
+```
 ## Dateistruktur
 
 - `code/` – Quellcode-Dateien  
