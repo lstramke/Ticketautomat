@@ -1,0 +1,494 @@
+____________ Tests der Funktionen in tests.cpp
+Einsetzen möglicher, passender wie nicht passender, Parameterwerte, Erwartung sowie tatsächliche Ausgabe des Programms.
+Die tests.cpp Datei wird alternativ zur main.cpp mit den anderen .cpp datein kompiliert und führt Tests durch,
+die Erwartung sowie die tatsächlichen Ausgaben sind auf der Konsole zu sehen.
+
+dort werden folgende Funktionen überprüft:
+
+1. - Menue::initGeld, welche gleichzeitig die Funktionen: 
+    - read_init_Geldscheine, 
+    - Geldliste::addGeld und 
+    - den Konstruktor der Geldklasse sowie
+    - Geldliste::ausgabeListe überprüft
+
+2. - Menue::startAbfrage 
+
+3. - Menue::straßenbahnAuswahl, welche gleichzeitig die Funktionen:
+    - read_data_Straßenbahnlinie,
+    - read_data_Haltestellen,
+    - Straßenbahnliste::addStraßenbahn und
+    - den Konstruktor der Straßenbahnklasse überprüft
+
+4. - Menue::fahrplanAnzeigen, welche gleichzeitig die Funktion:
+    - Straßenbahnliste::ausgabeFahrplan überprüft
+
+5. - Menue::starthaltestellenMenue, welche gleichzeitig die Funktion:
+    - Menue::valid_haltestelle überprüft
+    - da Menue::endhaltestellenMenue auf die gleiche Weise funktioniert und nur andere Konsolenausgaben hat
+
+6. - Menue::bezahlMenue, welche gleichzeitig die Funktionn:
+    - Straßenbahnliste::straßenbahnAnStelle,
+    - Straßenbahn::berechneEntfernungZwHaltestellen
+    - Menue::geldEingabe
+        -Geldliste::erhöheSorte
+            - Geldliste::sorteZuIndex
+            - Geld::erhoeheAnzahl
+    - Menue::wechselgeldAusgabe
+    - Menue::wechselgeldBehandlung
+        - Geldliste::senkeSorte
+    - Menue::ticketAusgabe und Konstruktor der Ticket Klasse
+        - Ticket::speichernTicket
+        - Ticket::ausgabeTicket
+
+
+____________ Test des Gesamtprogramms in Szenarien
+
+Ein Szenario besteht aus einer Reihe aus Usereingaben und dient dem testen des Zusammenspiels der Funktionen
+Außerdem wird immer eine Erwartung und die tatsächliche Ausgabe des Programms dokumentiert.
+
+In dem Fall steht jedes Szenario für einen Kunden und es werden 5 Kunden hintereinander simuliert.
+Ziel: die ersten zwei Kunden ziehen den 2er-Vorrat des Automaten der Dritte die beiden 1ner Kunde 4 enscheidet sich anders zu bezhalen und der Fünfte bricht den Bezahlvorgang ab
+
+----- Szenario 1: User kauft ein Ticket für die Linie 11, von Südplatz zur HTWK, bezahlt nicht passend
+----- Szenario 2: User probiert zuerst für eine ungültige Linie ein Ticket zu kaufen, entscheidet sich danach für die 4 und 
+                  möchte von der Weißestraße bis zum Augustsuplatz fahren, bezahlt auch nicht passend
+----- Szenario 3: User vertippt sich, will dann 15 fahren, gibt zuerst eine falsche Haltestelle ein, dann Naunhofer Straße bis Hauptbahnhof, bezahlt nicht passend
+----- Szenario 4: User möchte 11 fahren, Leinestraße bis HTWK, gibt zuerst ungültigen Schein ein, bezahlt dann unpassend und kann kein Wechelgeld bekommen,
+                  entscheidet sich dann anders zu bezahlen und bezahlt so das er Rückgeld bekommt
+----- Szenario 5: User vertippt sich am Anfang, möchte dann 4 fahren, vertippt sich bei der Starthaltestelle, fährt dann von Kolmstraße bis Breite Straße, 
+                  bezahlt nicht passend kann kein Rückgeld bekommen und bricht ab
+
+___ Ausgabe:
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe: 1
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 11
+
+---------- Fahrplan ------------
+Linie 11:
+Schkeuditz, Rathausplatz
+Altscherbitz
+Schkeuditz, Paetzstraße
+Schkeuditz, Gartenstraße
+Modelwitz
+Hänichen, Bismarckturm
+Freirodaer Weg
+Lützschena
+Stahmelner Allee
+Stahmeln
+Pittlerstraße
+Wahren
+Am Viadukt
+Annaberger Straße
+Möckernscher Markt
+Dantestraße
+S-Bf. Möckern
+Wiederitzscher Straße
+G.-Schumann-/Lindenthaler Str.
+G.-Schumann-/Lützowstr. Chausseehaus
+Wilhelm-Liebknecht-Platz
+Hauptbahnhof (Steig B)
+Augustusplatz
+Wilhelm-Leuschner-Platz
+Münzgasse, LVZ
+Hohe Straße
+Südplatz
+K.-Liebknecht-/K.-Eisner-Str.
+Richard-Lehmann-Straße
+HTWK
+Connewitzer Kreuz
+Stockartstraße
+Hildebrandstraße
+S-Bf. Connewitz
+Raschwitzer Straße
+Friederikenstraße
+Leinestraße
+Dölitz Straßenbahnhof
+Markkleeberg Virchowstr.
+Markkleeberg-Ost
+
+----- Haltestellenauswahl ------
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: Südplatz
+
+Endhaltestelle:
+Gib den Namen der Endhaltestelle ein: HTWK
+
+--------- Bezahlen ----------
+Der Preis beträgt: 9 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 9 | Eingabe: 11
+
+Rückgeld: Schein2
+
+- Bezahlvorgang abgeschlossen -
+
+Entnehmen Sie ihr Ticket
+___________________________________________________
+| Ticket der LV
+| Für: Linie 11
+| Starthaltestelle: Südplatz
+| Endhaltestelle: HTWK
+| Preis: 9GE
+| 
+| 1            1           2024271811-35
+---------------------------------------------------
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe: 1
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 12
+Linie unbekannt
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 4
+
+---------- Fahrplan ------------
+Linie 4:
+Gohlis, Landsberger Straße
+Beyerleinstraße
+Landsberger/Max-Liebermann-Straße
+Viertelsweg
+S-Bahnhof Coppiplatz
+Georg-Schumann-/Lindenthaler Straße
+Menckestraße
+Stallbaumstraße
+Am Mückenschlösschen
+Feuerbachstraße
+Waldplatz
+Leibnizstraße
+Goerdelerring
+Hauptbahnhof
+Augustusplatz
+Johannisplatz
+Gerichtsweg
+Reudnitz, Koehlerstraße
+Breite Straße
+Riebeck-/Oststraße
+Riebeck-/Stötteritzer Straße
+S-Bahnhof Stötteritz
+Breslauer Straße
+Weißestraße
+Rathaus Stötteritz
+Kolmstraße
+Stötteritz, Holzhäuser Straße
+
+----- Haltestellenauswahl ------
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: Weißestraße
+
+Endhaltestelle:
+Gib den Namen der Endhaltestelle ein: Augustusplatz
+
+--------- Bezahlen ----------
+Der Preis beträgt: 27 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 27 | Eingabe: 17
+Noch zu bezahlen: 10 | Eingabe: 7
+Noch zu bezahlen: 3 | Eingabe: 5
+
+Rückgeld: Schein2
+
+- Bezahlvorgang abgeschlossen -
+
+Entnehmen Sie ihr Ticket
+___________________________________________________
+| Ticket der LV
+| Für: Linie 4
+| Starthaltestelle: Weißestraße
+| Endhaltestelle: Augustusplatz
+| Preis: 27GE
+| 
+| 2            1           2024271812-13
+---------------------------------------------------
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe: 1
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): qr
+Linie unbekannt
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 15
+
+---------- Fahrplan ------------
+Linie 15:
+Miltitz
+Saturnstraße
+Jupiterstraße
+Plovdiver Straße
+Kiewer Straße
+Am Kirschberg
+Schönauer Ring
+Parkallee
+Grünauer Allee
+Saarländer Straße
+Credéstraße
+Lindenau, Bushof
+Henriettenstraße
+Lützner/Merseburger Straße
+Lindenauer Markt
+Angerbrücke
+Sportforum Süd
+Waldplatz
+Leibnizstraße
+Goerdelerring
+Hauptbahnhof
+Augustusplatz
+Johannisplatz
+Gutenbergplatz
+Ostplatz
+Witzgallstraße
+Technisches Rathaus
+Altes Messegelände
+Naunhofer Straße
+Völkerschlachtdenkmal
+Südfriedhof
+Prager/Russenstraße
+Probstheida
+Franzosenallee
+Roseggerstraße
+Meusdorf
+
+----- Haltestellenauswahl ------
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: An der Tabaksmühle
+Ungültige Haltestelle, bitte Haltestelle wie im Fahrplan eingeben, auch Groß-Kleinschreibung.
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: Naunhofer Straße
+
+Endhaltestelle:
+Gib den Namen der Endhaltestelle ein: Hauptbahnhof
+
+--------- Bezahlen ----------
+Der Preis beträgt: 24 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 24 | Eingabe: 17
+Noch zu bezahlen: 7 | Eingabe: 3
+Noch zu bezahlen: 4 | Eingabe: 3
+Noch zu bezahlen: 1 | Eingabe: 3
+
+Rückgeld: Schein1
+
+Rückgeld: Schein1
+
+- Bezahlvorgang abgeschlossen -
+
+Entnehmen Sie ihr Ticket
+___________________________________________________
+| Ticket der LV
+| Für: Linie 15
+| Starthaltestelle: Naunhofer Straße
+| Endhaltestelle: Hauptbahnhof
+| Preis: 24GE
+| 
+| 3            1           2024271813-35
+---------------------------------------------------
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe: 1
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 11
+
+---------- Fahrplan ------------
+Linie 11:
+Schkeuditz, Rathausplatz
+Altscherbitz
+Schkeuditz, Paetzstraße
+Schkeuditz, Gartenstraße
+Modelwitz
+Hänichen, Bismarckturm
+Freirodaer Weg
+Lützschena
+Stahmelner Allee
+Stahmeln
+Pittlerstraße
+Wahren
+Am Viadukt
+Annaberger Straße
+Möckernscher Markt
+Dantestraße
+S-Bf. Möckern
+Wiederitzscher Straße
+G.-Schumann-/Lindenthaler Str.
+G.-Schumann-/Lützowstr. Chausseehaus
+Wilhelm-Liebknecht-Platz
+Hauptbahnhof (Steig B)
+Augustusplatz
+Wilhelm-Leuschner-Platz
+Münzgasse, LVZ
+Hohe Straße
+Südplatz
+K.-Liebknecht-/K.-Eisner-Str.
+Richard-Lehmann-Straße
+HTWK
+Connewitzer Kreuz
+Stockartstraße
+Hildebrandstraße
+S-Bf. Connewitz
+Raschwitzer Straße
+Friederikenstraße
+Leinestraße
+Dölitz Straßenbahnhof
+Markkleeberg Virchowstr.
+Markkleeberg-Ost
+
+----- Haltestellenauswahl ------
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: Leinestraße
+
+Endhaltestelle:
+Gib den Namen der Endhaltestelle ein: HTWK
+
+--------- Bezahlen ----------
+Der Preis beträgt: 21 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 21 | Eingabe: 21
+Ungültige Eingabe, Bitte nur 17, 11, 7, 5, 3, 2, 1 GE-Scheine eingeben
+Noch zu bezahlen: 21 | Eingabe: 17
+Noch zu bezahlen: 4 | Eingabe: 5
+
+- Es ist nicht möglich das Rückgeld auszugeben -
+[1] Anders bezahlen
+[ ] ansonsten Kauf beenden
+
+Eingabe: 1
+
+Rückgeld: Schein17
+
+Rückgeld: Schein5
+
+
+--------- Bezahlen ----------
+Der Preis beträgt: 21 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 21 | Eingabe: 17
+Noch zu bezahlen: 4 | Eingabe: 7
+
+Rückgeld: Schein3
+
+- Bezahlvorgang abgeschlossen -
+
+Entnehmen Sie ihr Ticket
+___________________________________________________
+| Ticket der LV
+| Für: Linie 11
+| Starthaltestelle: Leinestraße
+| Endhaltestelle: HTWK
+| Preis: 21GE
+| 
+| 4            1           2024271814-17
+---------------------------------------------------
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe: q
+Bitte 1 für Ticketerwerb, 2 für Beenden eingeben
+Eingabe: 1
+
+----- Straßenbahnauswahl -------
+Gib die Nummer der gewünschten Straßenbahn ein (bspw. 11): 4
+
+---------- Fahrplan ------------
+Linie 4:
+Gohlis, Landsberger Straße
+Beyerleinstraße
+Landsberger/Max-Liebermann-Straße
+Viertelsweg
+S-Bahnhof Coppiplatz
+Georg-Schumann-/Lindenthaler Straße
+Menckestraße
+Stallbaumstraße
+Am Mückenschlösschen
+Feuerbachstraße
+Waldplatz
+Leibnizstraße
+Goerdelerring
+Hauptbahnhof
+Augustusplatz
+Johannisplatz
+Gerichtsweg
+Reudnitz, Koehlerstraße
+Breite Straße
+Riebeck-/Oststraße
+Riebeck-/Stötteritzer Straße
+S-Bahnhof Stötteritz
+Breslauer Straße
+Weißestraße
+Rathaus Stötteritz
+Kolmstraße
+Stötteritz, Holzhäuser Straße
+
+----- Haltestellenauswahl ------
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: 1se1ss
+Ungültige Haltestelle, bitte Haltestelle wie im Fahrplan eingeben, auch Groß-Kleinschreibung.
+
+Starthaltestelle:
+Gib den Namen der Starthaltestelle ein: Kolmstraße
+
+Endhaltestelle:
+Gib den Namen der Endhaltestelle ein: Breite Straße
+
+--------- Bezahlen ----------
+Der Preis beträgt: 21 GE
+Automat akzeptiert GE-Schein 17, 11, 7, 5, 3, 2, 1
+Bitte gebe deine Scheine einzeln nacheinander ein.
+Um den Vorgang abzubrechen gebe 0 ein.
+Noch zu bezahlen: 21 | Eingabe: 17
+Noch zu bezahlen: 4 | Eingabe: 5
+
+- Es ist nicht möglich das Rückgeld auszugeben -
+[1] Anders bezahlen
+[ ] ansonsten Kauf beenden
+
+Eingabe: aa
+
+Rückgeld: Schein17
+
+Rückgeld: Schein5
+
+
+---------- Willkommen ----------
+[1] Ticket kaufen
+[2] Beenden
+
+Eingabe:
+
+
+Durchlauf der Szenarien beendet

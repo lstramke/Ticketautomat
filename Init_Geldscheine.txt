@@ -1,0 +1,7 @@
+schein17, 2,
+schein11, 2,
+schein7, 2,
+schein5, 2,
+schein3, 2,
+schein2, 2,
+schein1, 2
